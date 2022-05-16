@@ -5,5 +5,35 @@
 
 <h1>Create Products</h1>
 
+<form action="/products" method="post">
+    <div>
+        <input type="text" name="name" placeholder="name">
+    </div>
+    <br>
+    <div>
+        <input type="text" name="price" placeholder="price">
+    </div>
+    <br>
+
+    <div>
+        <textarea name="description" id="" cols="30" rows="10" placeholder="description"></textarea>
+    </div>
+    <br>
+
+    <div>
+        <input type="text" name="image" placeholder="image">
+    </div>
+    <br>
+    <select name="category" id="">
+        <% for(cat of category){%>
+        <option value="<%=cat%>"><%=cat%></option>
+        <%}%>
+    </select>
+    <br>
+
+    <button type="submit">Create Product</button>
+</form>
+
+
 
 

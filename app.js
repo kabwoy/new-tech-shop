@@ -16,7 +16,7 @@ app.use(productRoutes)
 app.get("/" , (req,res)=>{
     res.render("home.ejs")
 })
-sequelize.sync({force:true}).then(()=>{
+sequelize.sync().then(()=>{
 
     console.log("Success..")
 })

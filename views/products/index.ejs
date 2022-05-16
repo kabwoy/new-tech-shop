@@ -5,5 +5,10 @@
 <%- include("../partials/header") %> 
 <h1>All Products</h1>
 
+<ul>
+    <% for (data of alldata){%>
+    <li><%= data.name%> | <a href="/products/<%= data.id%>">Show</a></li>
+    <%}%>
+</ul>
 
 <%- include("../partials/footer") %> 
