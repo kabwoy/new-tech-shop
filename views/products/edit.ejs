@@ -1,0 +1,39 @@
+<%- include("../partials/head" , {title:"Edit Product"}) %>
+</head>
+<body>
+<%- include("../partials/header") %>
+
+<h1>Edit Products</h1>
+
+<form action="/products" method="post">
+    <div>
+        <input type="text" name="name" placeholder="name" value="<%= data.name%>">
+    </div>
+    <br>
+    <div>
+        <input type="text" name="price" placeholder="price" value="<%= data.price%>">
+    </div>
+    <br>
+
+    <div>
+        <textarea name="description" id="" cols="30" rows="10" placeholder="description"><%= data.description%></textarea>
+    </div>
+    <br>
+
+    <div>
+        <input type="text" name="image" placeholder="image">
+    </div>
+    <br>
+    <select name="category" id="">
+        <% for(cat of category){%>
+        <option  value="<%=cat%>" %> <%= cat === data.category ? '' : 'selected'%>><%= cat %></option>
+        <%}%>
+    </select>
+    <br>
+
+    <button type="submit">Edit Product</button>
+</form>
+
+<%- include("../partials/footer")%>
+
+

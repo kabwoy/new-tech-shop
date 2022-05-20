@@ -53,4 +53,16 @@ router.get("/products/:id" , async function (req,res) {
     })
 
 })
+
+router.get("/products/:id/edit" , async(req,res)=>{
+
+    Product.findByPk(req.params.id).then((data)=>{
+
+        console.log(data)
+
+        res.render("products/edit" , {category , data})
+    })
+
+
+})
 module.exports = router
