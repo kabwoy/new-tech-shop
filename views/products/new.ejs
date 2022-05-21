@@ -1,11 +1,12 @@
 <%- include("../partials/head" , {title:"Create Product"}) %>
+<link rel="stylesheet" href="/styles/form.css">
 </head>
 <body> 
 <%- include("../partials/header") %> 
 
-<h1>Create Products</h1>
-
+<main class="form-container">
 <form action="/products" method="post">
+    <h1>Create Products</h1>
     <div>
         <input type="text" name="name" placeholder="name">
     </div>
@@ -33,6 +34,7 @@
 
     <button type="submit">Create Product</button>
 </form>
+</main>
 
 <%- include("../partials/footer")%>
 

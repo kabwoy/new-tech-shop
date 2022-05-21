@@ -1,0 +1,17 @@
+body{
+
+    box-sizing: border-box;
+}
+
+.form-container{
+   display: flex;
+    justify-content: center;
+    background-color: #3333;
+    height: 100vh;
+}
+
+form input{
+
+    width: 100%;
+
+}
