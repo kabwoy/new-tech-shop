@@ -2,3 +2,9 @@
 
 <h2><%=data.name%></h2>
 <p><%= data.description%></p>
+
+<a href="/products/<%= data.id%>/edit">Update this Product</a>
+
+<form action="/products/<%= data.id%>?_method=DELETE" method="post">
+    <button type="submit">Delete</button>
+</form>

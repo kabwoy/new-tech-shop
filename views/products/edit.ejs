@@ -5,7 +5,7 @@
 
 <h1>Edit Products</h1>
 
-<form action="/products" method="post">
+<form action="/products/<%= data.id%>?_method=PUT" method="post">
     <div>
         <input type="text" name="name" placeholder="name" value="<%= data.name%>">
     </div>

@@ -65,4 +65,30 @@ router.get("/products/:id/edit" , async(req,res)=>{
 
 
 })
+
+router.put("/products/:id" , async(req , res)=>{
+
+    Product.findByPk(req.params.id).then(async(data)=>{
+        data.name = req.body.name
+        data.price = req.body.price
+        data.description = req.body.description
+        data.category = req.body.category
+        await data.save().then(()=>{
+            res.redirect("/products")
+        })
+    })
+})
+
+router.delete("/products/:id" , async(req,res)=>{
+
+    Product.findByPk(req.params.id).then(async(data)=>{
+
+        return data.destroy()
+    }).then(()=>{
+
+        res.redirect("/products")
+    })
+
+
+})
 module.exports = router
