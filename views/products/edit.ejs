@@ -26,7 +26,7 @@
     <br>
     <select name="category" id="">
         <% for(cat of category){%>
-        <option  value="<%=cat%>" %> <%= cat === data.category ? '' : 'selected'%>><%= cat %></option>
+        <option <%= data.category === cat ?  "" : "selected"%>  value="<%=cat%>" %> ><%= cat %></option>
         <%}%>
     </select>
     <br>

@@ -2,6 +2,7 @@ const express = require("express")
 const methodOverride = require("method-override")
 const sequelize = require("./database/connection")
 const Product = require("./models/product")
+const User = require("./models/user")
 const productRoutes = require("./routes/product-routes")
 const usersRoutes = require("./routes/users-routes")
 const path = require("path")
@@ -20,8 +21,13 @@ app.use(usersRoutes)
 app.get("/" , (req,res)=>{
     res.render("home.ejs")
 })
-sequelize.sync().then(()=>{
+
+Product.belongsTo(User)
+User.hasMany(Product)
+
+sequelize.sync({force:true}).then(()=>{
 
     console.log("Success..")
 })
+
 app.listen(3000)

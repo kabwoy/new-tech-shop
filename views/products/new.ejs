@@ -1,38 +1,38 @@
 <%- include("../partials/head" , {title:"Create Product"}) %>
-<link rel="stylesheet" href="/styles/form.css">
 </head>
 <body> 
 <%- include("../partials/header") %> 
 
-<main class="form-container">
+<main class="container mt-4 w-50" >
 <form action="/products" method="post">
-    <h1>Create Products</h1>
-    <div>
-        <input type="text" name="name" placeholder="name">
+    <h1 class="text-center">Create Products</h1>
+    <div class="form-group>
+        <input type="text" name="name" placeholder="name" class="form-control"/>
     </div>
     <br>
-    <div>
-        <input type="text" name="price" placeholder="price">
-    </div>
-    <br>
-
-    <div>
-        <textarea name="description" id="" cols="30" rows="10" placeholder="description"></textarea>
+    <div  class="form-group">
+        <input type="text" name="price" placeholder="price" class="form-control">
     </div>
     <br>
 
-    <div>
-        <input type="text" name="image" placeholder="image">
+    <div  class="form-group">
+        <textarea name="description" id="" cols="30" rows="10" placeholder="description" class="form-control"></textarea>
     </div>
     <br>
-    <select name="category" id="">
+
+    <div  class="form-group">
+        <input type="text" name="image" placeholder="image" class="form-control">
+    </div>
+    <br>
+    <div class="form-group">
+    <select name="category" id="" class="form-control">
         <% for(cat of category){%>
         <option value="<%=cat%>"><%=cat%></option>
         <%}%>
     </select>
-    <br>
+</div>
 
-    <button type="submit">Create Product</button>
+    <button type="submit" class="btn btn-success" style="margin-bottom: 10rem">Create Product</button>
 </form>
 </main>
 
