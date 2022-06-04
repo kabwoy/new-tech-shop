@@ -1,0 +1,17 @@
+<%- include("../partials/head" , {title:'Login'})%>
+<%- include("../partials/header") %> 
+<main class="container mt-4" style="margin-top: 5rem !important; ">
+<form action="/login" method="post">
+    <h1 class="text-center">Login</h1>
+    <div class="form-group">
+        <input type="email" name="email" class="form-control" placeholder="email">
+    </div>
+
+    <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="password i.e 1234">
+    </div>
+    <button type="submit" class="btn btn-success">Login</button>
+</form>
+</main>
+
+<%- include("../partials/footer")%>

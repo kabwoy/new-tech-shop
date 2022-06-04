@@ -3,85 +3,38 @@
 <body>
 <%- include("../partials/header") %>
 
-<form class="forms" action="/signup" method="post">
-    <div class="logo">Sign Up</div>
+<form class="container w-50 mt-4" action="/signup" method="post">
+    <div class="text-center">Sign Up</div>
     <div class="form-group">
-        <label for="username">username</label>
-        <input type="text" id="username" name="username">
+        <label for="username" class="form-label">username</label>
+        <input type="text" id="username" name="username" class="form-control" required>
     </div>
 
     <div class="form-group">
         <label for="email">email</label>
-        <input type="email" id="email" name="email"/>
+        <input type="email" id="email" name="email" class="form-control" />
     </div>
 
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password"/>
+        <input type="password" id="password" name="password" class="form-control" required/>
     </div>
 
     <div class="form-group">
         <label for="firstname">first name</label>
-        <input type="text" id="firstname" name="first name"/>
+        <input type="text" id="firstname" name="firstname" class="form-control" required/>
     </div>
 
     <div class="form-group">
         <label for="lastname">last name</label>
-        <input type="text" id="lastname" name="lastname"/>
+        <input type="text" id="lastname" name="lastname" class="form-control" required/>
     </div>
 
     <div class="form-group">
         <label for="phoneno">contact</label>
-        <input type="text" id="phoneno" name="contact"/>
+        <input type="text" id="phoneno" name="contact" class="form-control" required/>
     </div>
 
-    <button type="submit">Signup</button>
+    <button type="submit" class="btn btn-primary">Signup</button>
 </form>
-
-<style>
-    .forms{
-
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5rem;
-        margin-bottom: 5rem;
-    }
-
-    .form-group{
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    .form-group>*{
-        align-self: flex-start;
-    }
-
-    .logo{
-
-        font-family: serif;
-        font-size: 2em;
-        font-weight: 600;
-    }
-
-    .forms button{
-        margin-top: 5px;
-        background-color: #2da817;
-        border: none;
-        width: 10rem;
-        padding: 10px;
-        border-radius: 10px;
-        cursor: pointer;
-        color: white;
-
-    }
-
-    .forms button:hover{
-
-        background-color: #336528;
-
-    }
-</style>
+<%- include("../partials/footer" )%>
