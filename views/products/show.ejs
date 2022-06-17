@@ -8,3 +8,11 @@
 <form action="/products/<%= data.id%>?_method=DELETE" method="post">
     <button type="submit">Delete</button>
 </form>
+ 
+<form action="/addtocart/<%= locals.userid %>" method="post">
+    <input type="text" value="<%= data.id %>" name="prodid" hidden>
+    <button type="submit">Add to Cart</button>
+    <%= locals.userid %> 
+</form>
+
+

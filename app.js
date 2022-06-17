@@ -7,6 +7,7 @@ const User = require("./models/user")
 const Cart = require("./models/cart")
 const productRoutes = require("./routes/product-routes")
 const usersRoutes = require("./routes/users-routes")
+const shopRoutes = require("./routes/shop-routes")
 const path = require("path")
 const app = express()
 
@@ -22,21 +23,41 @@ app.use(session({
     resave:false,
     saveUninitialized:false
 }))
-app.use(productRoutes)
 app.use(usersRoutes)
-app.use(function(req,res,next){
-    if(!req.session.user){
 
-        return console.log("NO USERS YET") 
-    }
+app.use(async function(req,res,next){
 
-    req.user = req.session.user
+if(!req.session.user){
+
+    console.log("no users yet")
+
+    next()
+}else{
+
+    req.user = await User.findByPk(req.session.user.id)
+
+    res.locals.userid = req.user.id
+
+    next()
+
+}
+    
+})
+app.use(async function(req,res,next){
+
+    await Cart.destroy({where:{productId:null}}).then(()=>{
+
+        console.log("destoeyed")
+    })
 
     next()
 })
+app.use(shopRoutes)
+app.use(productRoutes)
+
 
 app.get("/" , (req,res)=>{
-    console.log(req.session)
+    console.log(req.user)
     res.render("home.ejs")
 })
 
@@ -46,7 +67,7 @@ Product.hasMany(Cart)
 Cart.belongsTo(User)
 User.hasMany(Cart)
 
-sequelize.sync({alter:true}).then(()=>{
+sequelize.sync({force:true}).then(()=>{
 
     console.log("Success..")
 }).catch((err=>{

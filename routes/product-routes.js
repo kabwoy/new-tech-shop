@@ -10,7 +10,7 @@ router.get("/products" , async(req,res)=>{
 
     Product.findAll({}).then((alldata)=>{
 
-        console.log(alldata)
+        // console.log(alldata)
 
         res.render("products/index" ,{alldata})
 
@@ -46,7 +46,11 @@ router.get("/products/:id" , async function (req,res) {
 
     Product.findByPk(req.params.id).then((data)=>{
 
-        console.log(data)
+        // console.log(data)
+
+        req.products = data
+
+        // console.log(Object.keys(req.products.__proto__))
 
         res.render("products/show" , {data})
 

@@ -70,8 +70,6 @@ router.post("/login" , async function(req,res){
             req.session.user = result
 
            
-         
-
             res.redirect("/")
 
     })
