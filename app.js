@@ -41,7 +41,6 @@ if(!req.session.user){
     next()
 
 }
-    
 })
 app.use(async function(req,res,next){
 
@@ -67,7 +66,7 @@ Product.hasMany(Cart)
 Cart.belongsTo(User)
 User.hasMany(Cart)
 
-sequelize.sync({force:true}).then(()=>{
+sequelize.sync({alter:true}).then(()=>{
 
     console.log("Success..")
 }).catch((err=>{
