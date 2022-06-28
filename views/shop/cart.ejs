@@ -1,6 +1,7 @@
-<%- include("../partials/head" , {title:"Show Product"}) %>
+<%- include("../partials/head" , {title:"Carts Page"}) %>
 <%- include("../partials/header") %>
-<h1 class="text-center">Carts Page</h1>
+<h1 class="text-center">Carts Page <span style="float: right; margin-right: 1rem; font-size:15px ;" class="my-2">Sub Total: 0</span></h1>
+
 <div class="container">
     <div class="row">
     <% for(prod of data){ %> 
@@ -9,7 +10,7 @@
                 <img style="height: 100px;" src="<%= prod.product.image  %>" alt="">
                 <h5 class="card-title"><%= prod.product.name  %></h5>
                 <p class="card-text" style="font-weight: bold ;">Quantity: <%= prod.quantity %></p>
-               <a href="/products/<%= data.id %>" class="btn btn-secondary">show product</a>
+                <p><b>Price:<%= prod.product.price  %> </b></p>
         </div>
         </div>
         <% } %> 
