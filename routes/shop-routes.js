@@ -12,11 +12,37 @@ const router = express.Router()
 // })
 
 router.post("/addtocart/:id" , async function(req,res){
-  
-    Cart.create({userId:req.params.id , productId:req.body.prodid , quantity:"1"}).then(()=>{
 
-        res.redirect("/getcart")
-    })
+    let q = 1
+
+    const existingProduct =  await Cart.findOne({where:{productId:req.body.prodid}})
+
+    if(existingProduct){
+
+
+        await Cart.findByPk(existingProduct.id).then((data)=>{
+
+            data.quantity =data.quantity+1
+
+            data.save().then(()=>{
+
+                res.redirect("/getcart")
+
+               
+            })
+        })
+    }else{
+
+
+        Cart.create({userId:req.params.id , productId:req.body.prodid}).then(()=>{
+
+            res.redirect("/getcart")
+        })
+
+
+    }
+  
+    
 
     
 })

@@ -10,6 +10,12 @@ const Cart = sequelize.define("cart" , {
         autoIncrement:true,
         allowNull:false
     },
+
+    quantity:{
+
+        type:Sequelize.INTEGER,
+        defaultValue:1,
+    }
    
 })
 

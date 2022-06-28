@@ -3,6 +3,7 @@ const session = require("express-session")
 const methodOverride = require("method-override")
 const sequelize = require("./database/connection")
 const Product = require("./models/product")
+const Order = require("./models/order")
 const User = require("./models/user")
 const Cart = require("./models/cart")
 const productRoutes = require("./routes/product-routes")
@@ -65,6 +66,9 @@ Cart.belongsTo(Product)
 Product.hasMany(Cart)
 Cart.belongsTo(User)
 User.hasMany(Cart)
+Order.belongsTo(Cart)
+Order.belongsTo(User)
+User.hasMany(Order)
 
 sequelize.sync({alter:true}).then(()=>{
 

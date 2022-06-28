@@ -40,6 +40,13 @@ const Product = sequelize.define("product" , {
 
     },
 
+    quantity:{
+
+        type:Sequelize.INTEGER,
+        allowNull:false,
+        defaultValue:1
+    },
+
     category:{
 
         type:Sequelize.STRING,
