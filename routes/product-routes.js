@@ -77,6 +77,7 @@ router.put("/products/:id" , async(req , res)=>{
         data.price = req.body.price
         data.description = req.body.description
         data.category = req.body.category
+        data.image = req.body.image
         await data.save().then(()=>{
             res.redirect("/products")
         })

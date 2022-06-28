@@ -3,12 +3,28 @@
 <body>
 
 <%- include("../partials/header") %> 
-<h1>All Products</h1>
+<h1 class="text-center">All Products</h1>
 
-<ul>
-    <% for (data of alldata){%>
-    <li><%= data.name%> | <a href="/products/<%= data.id%>">Show</a></li>
-    <%}%>
-</ul>
+    <div class="container">
+        
+        <div class="row">
+            <% for (data of alldata){%>
+            <!-- <div class="col-lg-4"> -->
+                <div class="card col-lg-3 mx-2 my-2">
+                    <div class="card-body">
+                        <img style="height: 100px ;" src="<%= data.image %> " alt="">
+                        <h5 class="card-title"><%=  data.name %> </h5>
+                        <p class="card-text">Content</p>
+                        <a href="/products/<%= data.id %> ">show product</a>
+                </div>
+            </div>
+
+            <!-- </div> -->
+            <%}%>
+</div>
+
+</div>
+
+
 <!-- <%= locals.userid %>  -->
 <%- include("../partials/footer") %> 
