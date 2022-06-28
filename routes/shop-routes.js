@@ -49,6 +49,10 @@ router.post("/addtocart/:id" , async function(req,res){
 
 router.get("/getcart" , async function(req,res){
 
+    if(!req.session.isAuthenticated){
+
+        return res.redirect("/users/login")
+    }
 
         await Cart.findAll({include:Product , where:{userId:req.user.id}}).then((data)=>{
             
