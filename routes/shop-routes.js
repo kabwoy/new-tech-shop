@@ -12,35 +12,44 @@ const router = express.Router()
 // })
 
 router.post("/addtocart/:id" , async function(req,res){
+    let currentQuantity = 1;
+    await Cart.findOne({where:{productId:req.body.prodid ,userId:req.user.id}}).then(async(product)=>{
+        if(product){
 
-    let q = 1
+            console.log("Product EXISTS")
 
-    const existingProduct =  await Cart.findOne({where:{productId:req.body.prodid}})
+            console.log(product)
 
-    if(existingProduct){
+            product.quantity = product.quantity + 1
 
-
-        await Cart.findByPk(existingProduct.id).then((data)=>{
-
-            data.quantity =data.quantity+1
-
-            data.save().then(()=>{
+            product.save().then(()=>{
 
                 res.redirect("/getcart")
-
-               
             })
-        })
-    }else{
 
+        }else{
 
-        Cart.create({userId:req.params.id , productId:req.body.prodid}).then(()=>{
+             Cart.create({userId:req.params.id , productId:req.body.prodid}).then(()=>{
 
             res.redirect("/getcart")
         })
 
+        }
 
-    }
+    })
+
+    // console.log(existingProduct)
+
+    // }else if(existingProduct.length<=0){
+
+
+        // Cart.create({userId:req.params.id , productId:req.body.prodid}).then(()=>{
+
+        //     res.redirect("/getcart")
+        // })
+
+
+    //  }
   
     
 
