@@ -70,6 +70,7 @@ router.get("/getcart" , async function(req,res){
                 return res.render("shop/nocart")
             }
 
+
             res.render("shop/cart" , {data})
         })
         

@@ -1,6 +1,6 @@
 <%- include("../partials/head" , {title:"Carts Page"}) %>
 <%- include("../partials/header") %>
-<h1 class="text-center">Carts Page <span style="float: right; margin-right: 1rem; font-size:15px ;" class="my-2">Sub Total: 0</span></h1>
+<h1 class="text-center">Carts Page <span style="float: right; margin-right: 1rem; font-size:15px ;" class="my-2">Sub Total: <span id="total">0</span></span></h1>
 
 <div class="container">
     <div class="row">
@@ -9,15 +9,33 @@
             <div class="card-body">
                 <img style="height: 100px;" src="<%= prod.product.image  %>" alt="">
                 <h5 class="card-title"><%= prod.product.name  %></h5>
-                <p class="card-text" style="font-weight: bold ;">Quantity: <%= prod.quantity %></p>
-                <p><b>Price:<%= prod.product.price  %> </b></p>
+                <p class="card-text" style="font-weight: bold ;">Quantity: <%= prod.quantity%></p>
+                <p> Price: <b class="price"><%= prod.product.price * prod.quantity   %> </b></p>
         </div>
         </div>
         <% } %> 
+        
 
   
 </div>
+<script>
+    var price = document.querySelectorAll("b")
+    var subtotal = document.getElementById("total")
+    var Total = 0
+   price.forEach(function(price){
 
+    var eachPriceParsed = parseInt(price.innerHTML)
+
+    Total = Total + eachPriceParsed
+
+    // console.log(n.innerHTML)
+
+
+   })
+
+   subtotal.textContent = Total
+   
+</script>
 </div>
 <%- include("../partials/footer") %>
 
