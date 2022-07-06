@@ -11,13 +11,18 @@
                 <h5 class="card-title"><%= prod.product.name  %></h5>
                 <p class="card-text" style="font-weight: bold ;">Quantity: <%= prod.quantity%></p>
                 <p> Price: <b class="price"><%= prod.product.price * prod.quantity   %> </b></p>
+                <form action="/orders" method="post">
+                    <input type="text" name="cartid" value="<%= prod.id %>" hidden>
+                    <input type="text" name="productid" value="<%= prod.product.id %> " hidden>
+                    <button type="submit" class="btn btn-success">Order Now</button>
+                </form>
+                <!-- <a href="/orders/<%= prod.id %> " class="btn btn-success outline mb-2">Order Now</a> -->
         </div>
         </div>
         <% } %> 
-        
-
   
 </div>
+
 <script>
     var price = document.querySelectorAll("b")
     var subtotal = document.getElementById("total")

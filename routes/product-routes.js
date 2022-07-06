@@ -26,13 +26,14 @@ router.get("/products/new" , async(req,res)=>{
 
 router.post("/products" , async(req,res)=>{
 
-    const {name , price ,description , image , category } = req.body
+    const {name , price ,description , image , quantity, category } = req.body
 
     Product.create({
         name:name,
         price:price,
         description:description,
         image:image,
+        quantity:quantity,
         category:category
     }).then(()=>{
 

@@ -66,9 +66,10 @@ Cart.belongsTo(Product)
 Product.hasMany(Cart)
 Cart.belongsTo(User)
 User.hasMany(Cart)
-Order.belongsTo(Cart)
 Order.belongsTo(User)
 User.hasMany(Order)
+Order.belongsTo(Product)
+Product.hasMany(Order)
 
 sequelize.sync({alter:true}).then(()=>{
 

@@ -10,12 +10,23 @@ const Order = sequelize.define("order" , {
         allowNull:false,
         autoIncrement:true,
     },
-
     quantity:{
 
         type:Sequelize.INTEGER,
         allowNull:false,
+    },
+    total:{
+
+        type:Sequelize.INTEGER,
+        allowNull:false
+
     }
+
+    // total:{
+
+    //     type:Sequelize.INTEGER,
+    //     allowNull:false,
+    // }
 
 
 })

@@ -1,6 +1,8 @@
 const express = require("express")
 const Cart = require("../models/cart")
 const Product = require("../models/product")
+const Order = require("../models/order")
+// const nodemailer = require("nodema")
 const User = require("../models/user")
 
 const router = express.Router()
@@ -81,4 +83,52 @@ router.get("/getcart" , async function(req,res){
     // console.log(Object.keys(req.user.__proto__))
 })
 
+router.post("/orders" , async function(req,res){
+    const results = await Order.findOne({where:{productId:req.body.productid , userId:req.user.id}})
+    if(results){
+
+        return console.log("order exists")
+    }
+
+    console.log(req.body)
+
+    var quantity = await Cart.findByPk(req.body.cartid)
+    var price = await Product.findByPk(req.body.productid)
+
+        Order.create({
+            userId:req.user.id,
+            quantity:quantity.quantity,
+            productId:quantity.productId,
+            total:price.price*quantity.quantity
+            })
+            .then(async()=>{
+
+                await Product.findByPk(req.body.productid).then((product)=>{
+
+                    console.log(product)
+
+                    product.quantity = product.quantity - quantity.quantity
+
+                    product.save().then(()=>{
+
+                        res.send("inventory updated")
+                    })
+                })
+            })
+
+
+})
+
+router.get("/test" , (req,res)=>{
+
+
+
+    Order.findAll({include:Cart , where:{cartId:2}}).then((data)=>{
+
+       Product.findByPk(data[0].cart.productId).then(product=>console.log(product.price*data[0].cart.quantity))
+
+
+    })
+
+})
 module.exports = router
