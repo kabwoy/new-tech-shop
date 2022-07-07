@@ -2,7 +2,8 @@ const express = require("express")
 const Cart = require("../models/cart")
 const Product = require("../models/product")
 const Order = require("../models/order")
-// const nodemailer = require("nodema")
+const mailer = require("../util/mailer")
+const nodemailer = require("nodemailer")
 const User = require("../models/user")
 
 const router = express.Router()
@@ -113,6 +114,10 @@ router.post("/orders" , async function(req,res){
 
                         res.send("inventory updated")
                     })
+
+                   
+
+
                 })
             })
 
@@ -135,6 +140,7 @@ router.get("/test" , (req,res)=>{
 router.get("/cart/clear/:id" , function(req,res){
     Cart.destroy({where:{userId:req.params.id}}).then(()=>{
         console.log("cart cleared");
+        res.redirect("/getcart")
     })
 })
 module.exports = router
