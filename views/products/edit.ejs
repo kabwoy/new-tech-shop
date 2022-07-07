@@ -2,37 +2,38 @@
 </head>
 <body>
 <%- include("../partials/header") %>
-
-<h1>Edit Products</h1>
+<div class="container" style="max-width: 50%;">
+<h1 class="text-center">Edit Products</h1>
 
 <form action="/products/<%= data.id%>?_method=PUT" method="post">
-    <div>
-        <input type="text" name="name" placeholder="name" value="<%= data.name%>">
+    <div class="form-group">
+        <input type="text" name="name" placeholder="name" value="<%= data.name%>" class="form-control">
     </div>
     <br>
-    <div>
-        <input type="text" name="price" placeholder="price" value="<%= data.price%>">
-    </div>
-    <br>
-
-    <div>
-        <textarea name="description" id="" cols="30" rows="10" placeholder="description"><%= data.description%></textarea>
+    <div class="form-group">
+        <input type="text" name="price" placeholder="price" value="<%= data.price%>" class="form-control">
     </div>
     <br>
 
-    <div>
-        <input type="text" name="image" placeholder="image" value="<%= data.image %>">
+    <div class="form-group">
+        <textarea name="description" id="" cols="30" rows="10" placeholder="description" class="form-control"><%= data.description%></textarea>
     </div>
     <br>
-    <select name="category" id="">
+
+    <div class="form-group">
+        <input type="text" name="image" placeholder="image" value="<%= data.image %>" class="form-control">
+    </div>
+    <br>
+    <select name="category" id="" class="form-control">
         <% for(cat of category){%>
         <option <%= data.category === cat ?  "" : "selected"%>  value="<%=cat%>" %> ><%= cat %></option>
         <%}%>
     </select>
     <br>
 
-    <button type="submit">Edit Product</button>
+    <button type="submit" class="btn btn-success mb-4">Edit Product</button>
 </form>
+</div>
 
 <%- include("../partials/footer")%>
 

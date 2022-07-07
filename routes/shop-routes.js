@@ -131,4 +131,10 @@ router.get("/test" , (req,res)=>{
     })
 
 })
+
+router.get("/cart/clear/:id" , function(req,res){
+    Cart.destroy({where:{userId:req.params.id}}).then(()=>{
+        console.log("cart cleared");
+    })
+})
 module.exports = router

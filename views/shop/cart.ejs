@@ -1,6 +1,6 @@
 <%- include("../partials/head" , {title:"Carts Page"}) %>
 <%- include("../partials/header") %>
-<h1 class="text-center">Carts Page <span style="float: right; margin-right: 1rem; font-size:15px ;" class="my-2">Sub Total: <span id="total">0</span></span></h1>
+<h1 class="text-center">Carts Page  <span style="float: right; margin-right: 1rem; font-size:15px ;" class="my-2">Sub Total: <span id="total">0</span></span></h1>
 
 <div class="container">
     <div class="row">
@@ -19,10 +19,13 @@
                 <!-- <a href="/orders/<%= prod.id %> " class="btn btn-success outline mb-2">Order Now</a> -->
         </div>
         </div>
+
         <% } %> 
+
+        
   
 </div>
-
+<a href="/cart/clear/<%= locals.userid %> " class="btn btn-danger">Clear Your Cart</a>
 <script>
     var price = document.querySelectorAll("b")
     var subtotal = document.getElementById("total")
