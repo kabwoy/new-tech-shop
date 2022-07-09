@@ -4,6 +4,9 @@ const Product = require("../models/product")
 const Order = require("../models/order")
 const mailer = require("../util/mailer")
 const nodemailer = require("nodemailer")
+
+const pdfDocument = require("pdfkit")
+const fs = require("fs")
 const User = require("../models/user")
 
 const router = express.Router()
@@ -115,7 +118,7 @@ router.post("/orders" , async function(req,res){
                         res.send("inventory updated")
                     })
 
-                   
+                    mailer(req.user.email)
 
 
                 })
@@ -141,6 +144,20 @@ router.get("/cart/clear/:id" , function(req,res){
     Cart.destroy({where:{userId:req.params.id}}).then(()=>{
         console.log("cart cleared");
         res.redirect("/getcart")
+    })
+})
+
+router.get("/showorders" , (req, res)=>{
+    Order.findAll({include:Product, where:{userId:req.user.id}}).then((orders)=>{
+        // console.log(orders[0].product);
+        const doc = new pdfDocument()
+
+        doc.pipe(fs.createWriteStream("orders.pdf"))
+
+        doc.text(orders[0].product.name)
+        doc.end()
+        res.render("shop/showorders" , {orders})
+        
     })
 })
 module.exports = router

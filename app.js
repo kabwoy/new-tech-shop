@@ -3,6 +3,7 @@ const session = require("express-session")
 const methodOverride = require("method-override")
 const sequelize = require("./database/connection")
 const Product = require("./models/product")
+const flash = require("connect-flash")
 const Order = require("./models/order")
 const User = require("./models/user")
 const Cart = require("./models/cart")
@@ -25,6 +26,7 @@ app.use(session({
     resave:false,
     saveUninitialized:false
 }))
+app.use(flash())
 app.use(usersRoutes)
 
 app.use(async function(req,res,next){

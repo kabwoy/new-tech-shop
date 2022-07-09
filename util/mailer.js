@@ -14,13 +14,14 @@ function mailer(email){
         from:"newtechke991@gmail.com",
         to:email,
         subject:"Order Placement",
-        text:"Order Placed Successfully"
+        text:"Order Placed Successfully",
+        attachments:[]
     
     }
 
     transport.sendMail(mailOptions).then((err , info)=>{
-        console.log(info.response)
-    })
+        console.log("Mail sent")
+    }).catch(err => console.log(err.message))
 
 }
 

@@ -12,7 +12,7 @@ router.get("/products" , async(req,res)=>{
 
         // console.log(alldata)
 
-        res.render("products/index" ,{alldata})
+        res.render("products/index" ,{alldata , message:req.flash('info')})
 
     })
 
@@ -91,9 +91,8 @@ router.delete("/products/:id" , async(req,res)=>{
 
         return data.destroy()
     }).then(()=>{
-
+        req.flash('info' , 'Product Deleted Successfully')
         res.redirect("/products")
     })
-
 })
 module.exports = router
