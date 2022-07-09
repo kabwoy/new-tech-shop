@@ -41,7 +41,7 @@ if(!req.session.user){
     req.user = await User.findByPk(req.session.user.id)
 
     res.locals.userid = req.user.id
-
+    res.locals.isAdmin = req.user.isAdmin
     next()
 
 }

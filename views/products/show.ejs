@@ -11,11 +11,13 @@
 <img style="height: 100px ;" src="<%= data.image %> " alt="no img">
 <h5 class="card-title"><%=  data.name %> </h5>
 <p><%= data.description%></p>
-<a href="/products/<%= data.id%>/edit">Update this Product</a>
 
+<% if(locals.isAdmin){ %> 
 <form action="/products/<%= data.id%>?_method=DELETE" method="post">
     <button type="submit" class="btn btn-secondary">Delete</button>
 </form>
+<a href="/products/<%= data.id%>/edit">Update this Product</a>
+<% } %> 
  
 <form action="/addtocart/<%= locals.userid %>" method="post">
     <input type="text" value="<%= data.id %>" name="prodid" hidden>
@@ -23,7 +25,7 @@
          <p>Out of stock</p>
         <% }else{%> 
     <button type="submit" class="btn btn-primary my-2">Add to Cart</button>
-    <%= locals.userid %> 
+    
     <% } %> 
 </form>
 </div>

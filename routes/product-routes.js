@@ -1,11 +1,13 @@
+const { application } = require("express")
 const express = require("express")
-
+const isAdmin = require("../middleware/isAdmin")
+const isAuth = require("../middleware/isAuth")
 const Product = require("../models/product")
 
 const router = express.Router()
 
 const category = ["storage" , "desktop" , "laptops"]
-
+router.use(isAuth)
 router.get("/products" , async(req,res)=>{
 
     Product.findAll({}).then((alldata)=>{
@@ -19,12 +21,14 @@ router.get("/products" , async(req,res)=>{
 
 })
 
-router.get("/products/new" , async(req,res)=>{
+
+
+router.get("/products/new" , isAdmin, async(req,res)=>{
 
     res.render("products/new" , {category})
 })
 
-router.post("/products" , async(req,res)=>{
+router.post("/products" , isAdmin, async(req,res)=>{
 
     const {name , price ,description , image , quantity, category } = req.body
 
@@ -59,7 +63,7 @@ router.get("/products/:id" , async function (req,res) {
 
 })
 
-router.get("/products/:id/edit" , async(req,res)=>{
+router.get("/products/:id/edit" , isAdmin, async(req,res)=>{
 
     Product.findByPk(req.params.id).then((data)=>{
 
@@ -71,7 +75,7 @@ router.get("/products/:id/edit" , async(req,res)=>{
 
 })
 
-router.put("/products/:id" , async(req , res)=>{
+router.put("/products/:id" ,isAdmin, async(req , res)=>{
 
     Product.findByPk(req.params.id).then(async(data)=>{
         data.name = req.body.name
@@ -85,7 +89,7 @@ router.put("/products/:id" , async(req , res)=>{
     })
 })
 
-router.delete("/products/:id" , async(req,res)=>{
+router.delete("/products/:id" , isAdmin, async(req,res)=>{
 
     Product.findByPk(req.params.id).then(async(data)=>{
 

@@ -77,6 +77,12 @@ router.post("/login" , async function(req,res){
 
 })
 
+router.get("/logout" , function(req,res){
+
+    req.session.isAuthenticated = false
+
+    res.redirect("/users/login")
+})
 
 
 module.exports = router

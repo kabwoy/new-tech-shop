@@ -4,7 +4,7 @@ const Product = require("../models/product")
 const Order = require("../models/order")
 const mailer = require("../util/mailer")
 const nodemailer = require("nodemailer")
-
+const isAuth = require("../middleware/isAuth")
 const pdfDocument = require("pdfkit")
 const fs = require("fs")
 const User = require("../models/user")
@@ -16,7 +16,7 @@ const router = express.Router()
 //     res.render("shop/cart")
 
 // })
-
+router.use(isAuth)
 router.post("/addtocart/:id" , async function(req,res){
     let currentQuantity = 1;
     await Cart.findOne({where:{productId:req.body.prodid ,userId:req.user.id}}).then(async(product)=>{
