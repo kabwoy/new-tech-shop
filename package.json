@@ -20,6 +20,7 @@
     "nodemailer": "^6.7.7",
     "nodemon": "^2.0.16",
     "pdfkit": "^0.13.0",
+    "pdfkit-table": "^0.1.99",
     "sequelize": "^6.19.0"
   }
 }
