@@ -1,14 +1,11 @@
-const pdfDocument = require("pdfkit-table")
-const fs = require("fs")
-
-const doc = new pdfDocument()
-
-const date = Date.now()
-
-
-
 
 async function createTable(data , id){
+
+    const pdfDocument = require("pdfkit-table")
+    const fs = require("fs")
+    const doc = new pdfDocument()
+
+    const date = Date.now()
 
     doc.pipe(fs.createWriteStream(`recipt-${id}`))
 
@@ -17,7 +14,7 @@ async function createTable(data , id){
         headers:["Product Name" , "Price" , "Quantity" , 'Total'],
         rows:data
     }
-    await doc.table(table)
+    doc.table(table)
 
     doc.end()
 }

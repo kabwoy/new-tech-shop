@@ -153,7 +153,7 @@ router.get("/showorders" , async (req, res)=>{
         let d = []
         let sum
         orders.map(val=>d.push([val.product.name , val.product.price , val.quantity , val.total]))
-        createTable(d , req.user.id).then(()=>{
+        createTable(d,req.user.id).then((mes)=>{
             res.render("shop/showorders" , {orders})
         })
 
