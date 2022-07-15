@@ -1,4 +1,16 @@
-<% for(order of orders){ %> 
-    <%= order.product.name%> 
-
-    <% } %> 
+<%- include("../partials/head" , {title:"Show Orders"}) %>
+<%- include("../partials/header") %>
+<div class="container mt-4">
+    <div class="row">
+        <% for(order of orders){ %> 
+        <div class="card col-lg-3 mx-2 my-2">
+            <div class="card-body">
+                <img style="height: 100px;" src="<%= order.product.image %>" alt="">
+                <h5 class="card-title"><%= order.product.name%> </h5>
+                <p class="card-text" style="font-weight: bold ;">Quantity: <%= order.quantity%></p>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+<a href="/download" class="btn btn-primary">Download Order Reciept</a>

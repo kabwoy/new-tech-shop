@@ -148,16 +148,24 @@ router.get("/cart/clear/:id" , function(req,res){
     })
 })
 
-router.get("/showorders" , (req, res)=>{
-    Order.findAll({include:Product, where:{userId:req.user.id}}).then((orders)=>{
+router.get("/showorders" , async (req, res)=>{
+    Order.findAll({include:Product, where:{userId:req.user.id}}).then(async (orders)=>{
         let d = []
         let sum
         orders.map(val=>d.push([val.product.name , val.product.price , val.quantity , val.total]))
+        createTable(d , req.user.id).then(()=>{
+            res.render("shop/showorders" , {orders})
+        })
 
-        createTable(d)
-
-        res.render("shop/showorders" , {orders})
         
     })
+})
+
+// router.get("/download" , (req ,res)=>{
+//     res.download(`recipt-${req.user.id}`)
+// })
+
+router.get("/download" , (req,res)=>{
+    res.download(`recipt-${req.user.id}`)
 })
 module.exports = router

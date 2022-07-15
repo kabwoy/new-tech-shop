@@ -5,9 +5,12 @@ const doc = new pdfDocument()
 
 const date = Date.now()
 
-doc.pipe(fs.createWriteStream(`recipt-${date}`))
 
-async function createTable(data){
+
+
+async function createTable(data , id){
+
+    doc.pipe(fs.createWriteStream(`recipt-${id}`))
 
     const table = {
 
