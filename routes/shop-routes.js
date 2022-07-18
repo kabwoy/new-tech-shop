@@ -151,9 +151,9 @@ router.get("/cart/clear/:id" , function(req,res){
 router.get("/showorders" , async (req, res)=>{
     Order.findAll({include:Product, where:{userId:req.user.id}}).then(async (orders)=>{
         let d = []
-        let sum
-        orders.map(val=>d.push([val.product.name , val.product.price , val.quantity , val.total]))
-        createTable(d,req.user.id).then((mes)=>{
+        let total = 0
+        orders.map(val=>(total = total + val.total,d.push([val.product.name , val.product.price , val.quantity , val.total])))
+        createTable(d,req.user.id , total).then((mes)=>{
             res.render("shop/showorders" , {orders})
         })
 
